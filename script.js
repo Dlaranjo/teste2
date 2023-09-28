@@ -7,11 +7,19 @@ window.onload = function () {
 
 	var client = new BlipChat()
 	.withAppKey(appkey)
+	.withCustomCommonUrl('https://blip-admin-phu6o.chat.blip.ai/')   
 	.withEventHandler(BlipChat.LOAD_EVENT, function(){
 		var iframe = document.getElementById("blip-chat-iframe");
 		iframe.contentWindow.postMessage({ code: "ShowCloseButton", showCloseButton: true }, iframe.src);	
 	});
-		
+	client.withEventHandler(BlipChat.CREATE_ACCOUNT_EVENT, function () {
+		blipClient.sendMessage({
+                  "type": "text/plain",
+                  "content": "Olá",
+                  "metadata":{
+                    "#blip.hiddenMessage": true
+                   }
+              });})	
 	client.build();
 
 	openBlipChat = function() {
