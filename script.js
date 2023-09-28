@@ -13,7 +13,7 @@ window.onload = function () {
 		iframe.contentWindow.postMessage({ code: "ShowCloseButton", showCloseButton: true }, iframe.src);	
 	});
 	client.withEventHandler(BlipChat.CREATE_ACCOUNT_EVENT, function () {
-		blipClient.sendMessage({
+		client.sendMessage({
                   "type": "text/plain",
                   "content": "Olá",
                   "metadata":{
